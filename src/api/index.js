@@ -1,7 +1,7 @@
 import { get } from './helpers.js'
 
 const getSeller = get('api/seller')
-const getGood = get('api/good')
-const getRating = get('api/rating')
+const getGoods = get('api/goods')
+const getRatings = get('api/ratings')
 
-export { getSeller, getGood, getRating }
+export { getSeller, getGoods, getRatings }

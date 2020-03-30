@@ -10,8 +10,8 @@
 <script>
 import VHeader from './components/v-header/v-header.vue'
 import Tab from './components/tab/tab.vue'
-import Good from './components/good/good.vue'
-import Rating from './components/rating/rating.vue'
+import Goods from './components/goods/goods.vue'
+import Ratings from './components/ratings/ratings.vue'
 import Seller from './components/seller/seller.vue'
 import { getSeller } from './api/index.js'
 
@@ -27,12 +27,12 @@ export default {
       return [
         {
           label: '商品',
-          component: Good,
+          component: Goods,
           data: { seller: this.seller }
         },
         {
           label: '评价',
-          component: Rating,
+          component: Ratings,
           data: { seller: this.seller }
         },
         {

@@ -1,10 +1,10 @@
 <template>
-  <div class="good">I am good.</div>
+  <div class="goods">I am good.</div>
 </template>
 
 <script type="text/ecmascript-6">
   export default {
-    name: 'good',
+    name: 'goods',
     props: {
     }
   }

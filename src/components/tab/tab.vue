@@ -9,7 +9,7 @@
       ref="tabBar"
     >
     </cube-tab-bar>
-    <div class="silde-wrapper">
+    <div class="slide-wrapper">
       <cube-slide
         :initialIndex="index"
         :loop=false
@@ -92,7 +92,7 @@
     height 100%
     >>> .cube-tab
       padding 10px 0
-    .silde-wrapper
+    .slide-wrapper
       flex 1
       // 内容隐藏
       overflow hidden

@@ -1,8 +1,8 @@
 const path = require('path')
 const appData = require('./data.json')
 const seller = appData.seller
-const good = appData.good
-const rating = appData.rating
+const goods = appData.goods
+const ratings = appData.ratings
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -34,16 +34,16 @@ module.exports = {
           data: seller
         })
       })
-      app.get('/api/good', function (req, res) {
+      app.get('/api/goods', function (req, res) {
         res.json({
           errno: 0,
-          data: good
+          data: goods
         })
       })
-      app.get('/api/rating', function (req, res) {
+      app.get('/api/ratings', function (req, res) {
         res.json({
           errno: 0,
-          data: rating
+          data: ratings
         })
       })
     }

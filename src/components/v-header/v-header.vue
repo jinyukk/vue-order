@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" @click="showDetail">
     <div class="content-wrapper">
       <div class="avatar">
         <img width="64" height="64" :src="seller.avatar" />
@@ -47,6 +47,16 @@
         }
       }
     },
+    methods: {
+      showDetail() {
+        this.headerDetailComp = this.headerDetailComp || this.$createHeaderDetail({
+          $props: {
+            seller: 'seller'
+          }
+        })
+        this.headerDetailComp.show()
+      }
+    },
     components: {
       SupportIco
     }
@@ -63,6 +73,8 @@
     position relative
     color $color-white
     background $color-background-ss
+    // 隐藏 .background blur 的阴影效果
+    overflow hidden
     .content-wrapper
       position relative
       display flex
