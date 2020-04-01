@@ -11,7 +11,7 @@
     </cube-tab-bar>
     <div class="slide-wrapper">
       <cube-slide
-        :initialIndex="index"
+        :initialIndex="currentIndex"
         :loop=false
         :showDots=false
         :autoPlay=false
@@ -20,9 +20,9 @@
         @change="onChange"
         @scroll="onScroll"
         >
-        <cube-slide-item v-for="(tab, index) in tabs" :key="index">
+        <cube-slide-item v-for="tab in tabs" :key="tab.label">
           <!-- 动态组件 -->
-          <component :is="tab.component" :data="tab.data"></component>
+          <component :is="tab.component" :data="tab.data" ref="component"></component>
         </cube-slide-item>
       </cube-slide>
     </div>
@@ -48,7 +48,7 @@
     },
     data() {
       return {
-        index: this.initialIndex,
+        currentIndex: this.initialIndex,
         slideOptions: {
           // 监听 scroll 事件
           listenScroll: true,
@@ -61,18 +61,24 @@
     computed: {
       selectedLabel: {
         get() {
-          return this.tabs[this.index].label
+          return this.tabs[this.currentIndex].label
         },
         set(newVal) {
-          this.index = this.tabs.findIndex((tab) => {
+          this.currentIndex = this.tabs.findIndex((tab) => {
             return tab.label === newVal
           })
         }
       }
     },
+    mounted() {
+      this.onChange(this.currentIndex)
+    },
     methods: {
-      onChange(currentIndex) {
-        this.index = currentIndex
+      onChange(newIndex) {
+        this.currentIndex = newIndex
+        const component = this.$refs.component[this.currentIndex]
+        // 当 fetch() 方法存在时，再进行调用
+        component.fetch && component.fetch()
       },
       onScroll(pos) {
         const tabBarWidth = this.$refs.tabBar.$el.clientWidth
