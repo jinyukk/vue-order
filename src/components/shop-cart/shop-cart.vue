@@ -20,7 +20,6 @@
     <div class="ball-container">
       <div v-for="(ball, index) in balls" :key="index">
         <transition
-          name="drop"
           @before-enter="beforeDrop"
           @enter="dropping"
           @after-enter="afterDrop"
@@ -117,16 +116,16 @@
         const x = rect.left - 32
         const y = -(window.innerHeight - rect.top - 22)
         el.style.display = ''
-        el.style.transform = 'translate3d(0, ' + y.toString() + 'px, 0)'
+        el.style.transform = el.style.webkitTransform = 'translate3d(0, ' + y.toString() + 'px, 0)'
         const inner = el.getElementsByClassName(INNER_CLS)[0]
-        inner.style.transform = 'translate3d(' + x.toString() + 'px, 0, 0)'
+        inner.style.transform = inner.style.webkitTransform = 'translate3d(' + x.toString() + 'px, 0, 0)'
       },
       dropping(el, done) {
         // 小球初始位置变化，触发重绘
         this._reflow = document.body.offsetHeight
-        el.style.transform = 'translate3d(0,0,0)'
+        el.style.transform = el.style.webkitTransform = 'translate3d(0,0,0)'
         const inner = el.getElementsByClassName(INNER_CLS)[0]
-        inner.style.transform = 'translate3d(0,0,0)'
+        inner.style.transform = inner.style.webkitTransform = 'translate3d(0,0,0)'
         el.addEventListener('transitionend', done)
       },
       afterDrop(el) {
@@ -228,11 +227,11 @@
         left 32px
         bottom 22px
         z-index 200
-        transition all 1s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+        transition all 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41)
         .inner
           width 16px
           height 16px
           border-radius 50%
           background $color-blue
-          transition all 1s linear
+          transition all 0.4s linear
 </style>
