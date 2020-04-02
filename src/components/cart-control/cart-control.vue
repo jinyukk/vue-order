@@ -15,6 +15,8 @@
 </template>
 
 <script type="text/ecmascript-6">
+  const EVENT_ADD = 'add'
+
   export default {
     name: 'cart-control',
     props: {
@@ -26,7 +28,7 @@
       }
     },
     methods: {
-      addCart() {
+      addCart(event) {
         if (!this.food.count) {
           // Vue 中令对象添加到属性也能被观测到
           // 调用 this.$set
@@ -34,6 +36,8 @@
         } else {
           this.food.count++
         }
+        // 派发事件
+        this.$emit(EVENT_ADD, event.target)
       },
       decreaseCart() {
         if (this.food.count > 0) {
