@@ -77,8 +77,7 @@
       &.move-leave-active
         transition all 0.4s linear
     .cart-count
-      display inline-block
-      padding 6px
+      width 12px
       line-height 24px
       text-align center
       font-size 10px
